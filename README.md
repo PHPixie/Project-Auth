@@ -3,7 +3,13 @@
 This is a PHPixie project with some user authentication already setup.
 It serves as a faster starting point making rolling out your own authorization easier.
 
-To run it, just point your web server to the `web/` folder of the project.
+To run, first install the project:
+
+```
+composer create-project phpixie/project-auth project
+```
+
+Then point your web server to the `web/` folder. That's it.
 
 The project uses an SQLite database contained in `database.sqlite`. To recreate the same database in MySQL:
 
