@@ -51,7 +51,9 @@ class Builder extends \PHPixie\DefaultBundle\Builder
      */
     protected function buildAuthRepositories()
     {
-        return new AuthRepositories($this);
+        return new AuthRepositories(
+            $this->components()->orm()
+        );
     }
 
     /**

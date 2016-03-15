@@ -14,8 +14,8 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">
-						Deploy
+					<a class="navbar-brand" href="/">
+						PHPixie
 					</a>
 				</div>
 
@@ -26,7 +26,7 @@
                             <a class="navbar-link" href="<?=$this->httpPath('app.logout')?>"> <span class="glyphicon glyphicon-log-out"></span></a>
                         </p>
                     <?php else: ?>
-        er-             <li><a href="<?=$this->httpPath('app.login')?>">Login</a></li>
+          		        <li><a href="<?=$this->httpPath('app.login')?>">Login</a></li>
                     <?php endif;?>
                 </div>
 			</div>

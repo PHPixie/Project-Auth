@@ -2,6 +2,9 @@
 
 namespace Project\App;
 
+/**
+ * Handles processing of the HTTP requests
+ */
 class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
 {
     /**
@@ -18,6 +21,12 @@ class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
         $this->builder = $builder;
     }
 
+    /**
+     * Entry point of request processing.
+     * We do the authentication check here.
+     * @param $request
+     * @return \PHPixie\HTTP\Responses\Response
+     */
     public function process($request)
     {
         $firewall = $this->builder->firewall();

@@ -4,26 +4,33 @@ namespace Project\App\HTTPProcessors;
 
 use PHPixie\HTTP\Request;
 use PHPixie\Template;
+use Project\App\Builder;
+use Project\App\ORM\User\User;
 
 class Dashboard extends \PHPixie\DefaultBundle\Processor\HTTP\Actions
 {
     /**
-     * @var \Project\App\Builder
+     * @var Builder
      */
     protected $builder;
-    protected $components;
+
+    /**
+     * @param Builder $builder
+     */
 
     public function __construct($builder)
     {
         $this->builder = $builder;
-        $this->components = $this->builder->components();
     }
 
     public function defaultAction(Request $request)
     {
-        $user = $this->components->auth()->domain()->user();
+        $components = $this->builder->components();
 
-        return $this->components->template()->get('app:dashboard', array(
+        /** @var User $user */
+        $user = $components->auth()->domain()->user();
+
+        return $components->template()->get('app:dashboard', array(
             'user' => $user
         ));
     }
