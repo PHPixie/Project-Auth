@@ -3,6 +3,8 @@
 This is a PHPixie project with some advanced user authentication already setup.
 It serves as a faster starting point making rolling out your own authorization easier.
 
+![Project Demo](http://imgur.com/DMRrY38)
+
 There are two separate authentication domains: users and admins, stored in different
 tables and entirely separated. This means you can login as a user and an admin at the same time.
 In fact admins can impersonate any user with a press of the button on their dashboard.

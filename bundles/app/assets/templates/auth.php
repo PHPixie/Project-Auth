@@ -62,7 +62,8 @@
                                 if($field && !$field->isValid()):
                             ?>
                                 <span class="help-block text-danger">
-                                    <?php if($field->errors()[0]->type() == 'emailInUse'): ?>
+                                    <?php $error = $field->errors()[0]; ?>
+                                    <?php if($error->type() == 'custom' && $error->customType() == 'emailInUse'): ?>
                                         Email already in use.
                                     <?php else: ?>
                                         Not a valid email.
