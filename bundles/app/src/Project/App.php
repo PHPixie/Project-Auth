@@ -2,6 +2,8 @@
 
 namespace Project;
 
+use Project\App\Auth;
+
 /**
  * Default application bundle
  */
@@ -15,5 +17,13 @@ class App extends \PHPixie\DefaultBundle
     protected function buildBuilder($frameworkBuilder)
     {
         return new App\Builder($frameworkBuilder);
+    }
+
+    /**
+     * @return Auth
+     */
+    public function auth()
+    {
+        return $this->builder->auth();
     }
 }

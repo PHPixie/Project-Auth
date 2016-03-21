@@ -2,40 +2,18 @@
 
 namespace Project\App\HTTPProcessors;
 
-use PHPixie\DefaultBundle\Processor\HTTP\Actions as ActionsProcessor;
 use PHPixie\AuthHTTP\Providers\Cookie as CookieProvider;
 use PHPixie\AuthHTTP\Providers\Session as SessionProvider;
 use PHPixie\AuthLogin\Providers\Password as PasswordProvider;
-use PHPixie\Framework\Components;
 use PHPixie\HTTP\Request;
 use PHPixie\Template;
 use PHPixie\Validate\Results\Result\Field;
 use PHPixie\Validate\Rules\Rule\Data\Document;
-use Project\App\Builder;
 use Project\App\ORM\User\User;
 use PHPixie\Validate\Results\Result\Root as RootResult;
 
-class Auth extends ActionsProcessor
+class Auth extends Processor
 {
-    /**
-     * @var Builder
-     */
-    protected $builder;
-
-    /**
-     * @var Components
-     */
-    protected $components;
-
-    /**
-     * @param Builder $builder
-     */
-    public function __construct($builder)
-    {
-        $this->builder = $builder;
-        $this->components = $this->builder->components();
-    }
-
     /**
      * Login and signup page
      * @param Request $request
@@ -68,8 +46,8 @@ class Auth extends ActionsProcessor
      */
     public function logoutAction(Request $request)
     {
-        $this->components->auth()->domain()->forgetUser();
-        return $this->builder->frameworkBuilder()->http()->redirectResponse('app.login');
+        $this->builder->auth()->userDomain()->forgetUser();
+        return $this->userLoginRedirect();
     }
 
     /**
@@ -122,7 +100,7 @@ class Auth extends ActionsProcessor
             ));
         }
 
-        $domain = $this->components->auth()->domain();
+        $domain = $this->builder->auth()->userDomain();
         /** @var PasswordProvider $passwordProvider */
         $passwordProvider = $domain->provider('password');
 
@@ -200,6 +178,9 @@ class Auth extends ActionsProcessor
 
     protected function loggedInRedirect()
     {
-        return $this->builder->frameworkBuilder()->http()->redirectResponse('app.dashboard');
+        return $this->redirectResponse(
+            'app.processor',
+            array('processor' => 'dashboard')
+        );
     }
 }

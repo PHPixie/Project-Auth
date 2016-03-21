@@ -17,7 +17,10 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane <?=$activeTab=='login' ? 'active' : ''?>" id="login">
-                    <form method="POST" action="<?=$this->httpPath('app.login')?>">
+                    <form method="POST" action="<?=$this->httpPath(
+                        'app.processor',
+                        array('processor' => 'auth')
+                    )?>">
                         <?php if($this->get('loginFailed')): ?>
                             <div class="form-group">
                                 <div class="alert alert-warning" role="alert">Login failed</div>
@@ -47,8 +50,10 @@
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane <?=$activeTab=='signUp' ? 'active' : ''?>" id="signUp">
-                    <form method="POST" action="<?=$this->httpPath('app.login')?>">
-
+                    <form method="POST" action="<?=$this->httpPath(
+                        'app.processor',
+                        array('processor' => 'auth')
+                    )?>">
                         <div class="form-group">
                             <?php $field = isset($signupResult) ? $signupResult->field('email') : null; ?>
                             <label for="signupEmail">Email address</label>

@@ -7,8 +7,15 @@ namespace Project\App;
  */
 class ORMWrappers extends \PHPixie\ORM\Wrappers\Implementation
 {
-    protected $databaseEntities = array('user');
-    protected $databaseRepositories = array('user');
+    protected $databaseEntities = array(
+        'user',
+        'admin'
+    );
+
+    protected $databaseRepositories = array(
+        'user',
+        'admin'
+    );
 
     public function userEntity($entity)
     {
@@ -18,5 +25,15 @@ class ORMWrappers extends \PHPixie\ORM\Wrappers\Implementation
     public function userRepository($repository)
     {
         return new ORM\User\UserRepository($repository);
+    }
+
+    public function adminEntity($entity)
+    {
+        return new ORM\Admin\Admin($entity);
+    }
+
+    public function adminRepository($repository)
+    {
+        return new ORM\Admin\AdminRepository($repository);
     }
 }

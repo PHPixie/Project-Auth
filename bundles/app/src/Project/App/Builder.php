@@ -8,23 +8,21 @@ namespace Project\App;
 class Builder extends \PHPixie\DefaultBundle\Builder
 {
     /**
-     * Firewall
-     * @return Firewall
+     * Auth
+     * @return Auth
      */
-    public function firewall()
+    public function auth()
     {
-        return $this->instance('firewall');
+        return $this->instance('auth');
     }
 
     /**
-     * Build Firewall
-     * @return Firewall
+     * Build Auth
+     * @return Auth
      */
-    protected function buildFirewall()
+    protected function buildAuth()
     {
-        return new Firewall(
-            $this->components()->auth()
-        );
+        return new Auth($this);
     }
 
 

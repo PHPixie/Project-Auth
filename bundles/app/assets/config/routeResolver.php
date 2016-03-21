@@ -4,34 +4,46 @@ return array(
     'type'      => 'group',
     'resolvers' => array(
 
-        'frontpage' => array('path' => '', 'defaults' => array(
-            'processor' => 'frontpage',
-            'action' => 'default'
-        )),
-
-        'dashboard' => array('path' => 'dashboard', 'defaults' => array(
-            'processor' => 'dashboard',
-            'action' => 'default'
-        )),
-
-        'login' => array('path' => 'login', 'defaults' => array(
-            'processor' => 'auth',
-            'action' => 'default'
-        )),
-
-        'logout' => array('path' => 'logout', 'defaults' => array(
-            'processor' => 'auth',
-            'action' => 'logout'
-        )),
-
-        'default' => array(
-            'type'     => 'pattern',
-            'path'     => '(<processor>(/<action>))',
+        'admin' => array(
+            'type' => 'prefix',
+            'path' => 'admin',
             'defaults' => array(
-                'processor' => 'login',
+                'processor' => 'admin',
+            ),
+            'resolver' => array(
+                'type' => 'group',
+                'resolvers' => array(
+
+                    'action' => array(
+                        'type'     => 'pattern',
+                        'path'     => '/<adminProcessor>/<action>'
+                    ),
+
+                    'processor' => array(
+                        'type'     => 'pattern',
+                        'path'     => '(/<adminProcessor>)',
+                        'defaults' => array(
+                            'adminProcessor' => 'dashboard',
+                            'action'    => 'default'
+                        )
+                    ),
+                )
+            )
+        ),
+
+        'action' => array(
+            'type'     => 'pattern',
+            'path'     => '<processor>/<action>'
+        ),
+
+        'processor' => array(
+            'type'     => 'pattern',
+            'path'     => '(<processor>)',
+            'defaults' => array(
+                'processor' => 'dashboard',
                 'action'    => 'default'
             )
-        )
+        ),
         
     )
 );

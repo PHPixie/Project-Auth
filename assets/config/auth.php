@@ -25,13 +25,37 @@ return array(
                     'tokens' => array(
                         'storage' => array(
                             'type'            => 'database',
-                            'table'           => 'tokens',
+                            'table'           => 'userTokens',
                             'defaultLifetime' => 3600*24*14 // two weeks
                         )
                     )
                 ),
 
-                // password login suport
+                // password login support
+                'password' => array(
+                    'type' => 'login.password',
+
+                    // remember the user in session
+                    // note that we did not add 'cookies' to this array
+                    // because we don't want every login to be persistent
+                    'persistProviders' => array('session')
+                )
+            )
+        ),
+        'admin' => array(
+
+            // using the 'admin' repository from the 'app' bundle
+            'repository' => 'app.admin',
+            'providers'  => array(
+
+                // include session support
+                'session' => array(
+                    'type' => 'http.session'
+                ),
+
+                // note that we don't include cookie login
+
+                // password login support
                 'password' => array(
                     'type' => 'login.password',
 

@@ -23,4 +23,9 @@ class AuthRepositories extends \PHPixie\Auth\Repositories\Registry\Builder
     {
         return $this->orm->repository('user');
     }
+
+    protected function buildAdminRepository()
+    {
+        return $this->orm->repository('admin');
+    }
 }

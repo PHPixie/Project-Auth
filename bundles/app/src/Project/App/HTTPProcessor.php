@@ -22,28 +22,11 @@ class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
     }
 
     /**
-     * Entry point of request processing.
-     * We do the authentication check here.
-     * @param $request
-     * @return \PHPixie\HTTP\Responses\Response
-     */
-    public function process($request)
-    {
-        $firewall = $this->builder->firewall();
-        if($firewall->requireLogin($request)) {
-            return $this->builder->frameworkBuilder()->http()->redirectResponse('app.loging');
-        }
-
-        return parent::process($request);
-    }
-
-    /**
      * Build 'greet' processor
      * @return HTTPProcessors\Auth
      */
     protected function buildAuthProcessor()
     {
-
         return new HTTPProcessors\Auth(
             $this->builder
         );
@@ -55,9 +38,7 @@ class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
      */
     protected function buildDashboardProcessor()
     {
-        return new HTTPProcessors\Dashboard(
-            $this->builder
-        );
+        return new HTTPProcessors\Dashboard($this->builder);
     }
 
     /**
@@ -66,8 +47,15 @@ class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
      */
     protected function buildFrontpageProcessor()
     {
-        return new HTTPProcessors\Frontpage(
-            $this->builder
-        );
+        return new HTTPProcessors\Frontpage($this->builder);
+    }
+
+    /**
+     * Build 'admin' processor groupp
+     * @return HTTPProcessors\Admin\
+     */
+    protected function buildAdminProcessor()
+    {
+        return new HTTPProcessors\AdminProcessors($this->builder);
     }
 }
