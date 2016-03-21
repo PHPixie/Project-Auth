@@ -2,6 +2,7 @@
 
 namespace Project\App\HTTPProcessors\Processor;
 
+use PHPixie\HTTP\Request;
 use Project\App\HTTPProcessors\Processor;
 use Project\App\ORM\Admin\Admin;
 
@@ -15,6 +16,12 @@ abstract class AdminProtected extends Processor
      */
     protected $admin;
 
+    /**
+     * Only process the request if the user is an admin.
+     * Otherwise redirect to the admin login page.
+     * @param Request $request
+     * @return mixed
+     */
     public function process($request)
     {
         $this->admin = $this->loggedAdmin();

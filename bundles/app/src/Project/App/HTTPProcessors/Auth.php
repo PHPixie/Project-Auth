@@ -6,12 +6,17 @@ use PHPixie\AuthHTTP\Providers\Cookie as CookieProvider;
 use PHPixie\AuthHTTP\Providers\Session as SessionProvider;
 use PHPixie\AuthLogin\Providers\Password as PasswordProvider;
 use PHPixie\HTTP\Request;
+use PHPixie\HTTP\Responses\Response;
 use PHPixie\Template;
 use PHPixie\Validate\Results\Result\Field;
 use PHPixie\Validate\Rules\Rule\Data\Document;
 use Project\App\ORM\User\User;
 use PHPixie\Validate\Results\Result\Root as RootResult;
+use Project\App\ORM\User\UserRepository;
 
+/**
+ * User authorization processor
+ */
 class Auth extends Processor
 {
     /**
@@ -159,6 +164,11 @@ class Auth extends Processor
         return $validator;
     }
 
+    /**
+     * Get template for the auth page
+     * @param array $data
+     * @return Template\Container
+     */
     protected function getTemplate($data = array())
     {
         $defaults = array(
@@ -171,11 +181,19 @@ class Auth extends Processor
         );
     }
 
+    /**
+     * User repository
+     * @return UserRepository
+     */
     protected function userRepository()
     {
         return $this->components->orm()->repository('user');
     }
 
+    /**
+     * Redirect response used after login
+     * @return Response
+     */
     protected function loggedInRedirect()
     {
         return $this->redirectResponse(

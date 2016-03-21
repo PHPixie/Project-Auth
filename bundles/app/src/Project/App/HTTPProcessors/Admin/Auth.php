@@ -3,18 +3,20 @@
 namespace Project\App\HTTPProcessors\Admin;
 
 use PHPixie\HTTP\Request;
+use PHPixie\HTTP\Responses\Response;
 use Project\App\HTTPProcessors\Processor;
 use Project\App\ORM\Admin\Admin;
 use PHPixie\AuthLogin\Providers\Password as PasswordProvider;
 use PHPixie\Template;
+use Project\App\ORM\Admin\AdminRepository;
 
 /**
- * Admin dashboard
+ * Admin authorization processor
  */
 class Auth extends Processor
 {
     /**
-     * Login and signup page
+     * Login page
      * @param Request $request
      * @return mixed
      */
@@ -72,6 +74,11 @@ class Auth extends Processor
         return $this->loggedInRedirect();
     }
 
+    /**
+     * Get template for the auth page
+     * @param array $data
+     * @return Template\Container
+     */
     protected function getTemplate($data = array())
     {
         return $this->components->template()->get(
@@ -80,11 +87,18 @@ class Auth extends Processor
         );
     }
 
+    /**
+     * @return AdminRepository
+     */
     protected function adminRepository()
     {
         return $this->components->orm()->repository('admin');
     }
 
+    /**
+     * Redirect response used after login
+     * @return Response
+     */
     protected function loggedInRedirect()
     {
         return $this->redirectResponse(

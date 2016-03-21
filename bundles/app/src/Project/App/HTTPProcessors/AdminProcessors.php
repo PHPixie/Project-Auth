@@ -4,6 +4,9 @@ namespace Project\App\HTTPProcessors;
 
 use Project\App\Builder;
 
+/**
+ * Builds processors in the 'app.admin' namespace
+ */
 class AdminProcessors extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
 {
     /**
@@ -11,6 +14,11 @@ class AdminProcessors extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
      */
     protected $builder;
 
+    /**
+     * Specifies which request attribute will be used
+     * to select a processor.
+     * @var string
+     */
     protected $attributeName = 'adminProcessor';
 
     /**

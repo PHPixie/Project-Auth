@@ -13,6 +13,7 @@ use Project\App\ORM\User\UserRepository;
 class Dashboard extends AdminProtected
 {
     /**
+     * Dashboard page
      * @param Request $request
      * @return mixed
      */
@@ -27,6 +28,7 @@ class Dashboard extends AdminProtected
     }
 
     /**
+     * Handles impersonation form
      * @param Request $request
      * @return mixed
      */

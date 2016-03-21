@@ -6,6 +6,9 @@ use PHPixie\ORM;
 use Project\App\ORM\Admin\Admin;
 use PHPixie\AuthLogin\Providers\Password as PasswordProvider;
 
+/**
+ * Authorization helper
+ */
 class Auth
 {
     /**

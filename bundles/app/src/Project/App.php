@@ -3,12 +3,18 @@
 namespace Project;
 
 use Project\App\Auth;
+use Project\App\Builder;
 
 /**
  * Default application bundle
  */
 class App extends \PHPixie\DefaultBundle
 {
+    /**
+     * @var Builder
+     */
+    protected $builder;
+
     /**
      * Build bundle builder
      * @param \PHPixie\BundleFramework\Builder $frameworkBuilder
@@ -20,6 +26,7 @@ class App extends \PHPixie\DefaultBundle
     }
 
     /**
+     * Authorization helper
      * @return Auth
      */
     public function auth()

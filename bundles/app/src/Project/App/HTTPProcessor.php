@@ -51,7 +51,7 @@ class HTTPProcessor extends \PHPixie\DefaultBundle\Processor\HTTP\Builder
     }
 
     /**
-     * Build 'admin' processor groupp
+     * Build 'admin' processor group
      * @return HTTPProcessors\Admin\
      */
     protected function buildAdminProcessor()

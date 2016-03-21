@@ -5,6 +5,9 @@ namespace Project\App\HTTPProcessors;
 use PHPixie\HTTP\Request;
 use PHPixie\Template;
 
+/**
+ * Frontpage processor
+ */
 class Frontpage extends Processor
 {
     public function defaultAction(Request $request)

@@ -17,6 +17,8 @@ abstract class UserProtected extends Processor
     protected $user;
 
     /**
+     * Only process the request if the user is logged in.
+     * Otherwise redirect to the login page.
      * @param Request $request
      * @return mixed
      */

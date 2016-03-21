@@ -4,6 +4,7 @@ return array(
     'type'      => 'group',
     'resolvers' => array(
 
+        // a prefixed group for /admin/ routes
         'admin' => array(
             'type' => 'prefix',
             'path' => 'admin',

@@ -8,7 +8,7 @@ namespace Project\App;
 class Builder extends \PHPixie\DefaultBundle\Builder
 {
     /**
-     * Auth
+     * Authorization helper
      * @return Auth
      */
     public function auth()
