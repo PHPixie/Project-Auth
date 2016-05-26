@@ -6,7 +6,7 @@
             <form method="POST" action="<?=$this->httpPath(
                 'app.admin.processor',
                 array('adminProcessor' => 'auth')
-            )?>?>">
+            )?>">
                 <?php if($this->get('loginFailed')): ?>
                     <div class="form-group">
                         <div class="alert alert-warning" role="alert">Login failed</div>
