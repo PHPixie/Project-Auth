@@ -2,7 +2,7 @@
     "name": "phpixie/project-auth",
     "type": "project",
     "description" : "PHPixie authorization skeleton project",
-    "license" : "BSD",
+    "license" : "BSD-3-Clause",
     "autoload": {
         "psr-4": {
             "": [
